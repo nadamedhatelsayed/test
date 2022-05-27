@@ -1,0 +1,17 @@
+
+@font-face {
+    font-family: cocon, 'Glyphicons Halflings';
+    src: url('fonts/glyphicons-halflings-regular.eot');
+    src: url('fonts/glyphicons-halflings-regulard41d.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg')
+}
+@font-face { font-family:cocon; src: url('fonts/cocon.otf'); }
+
+body {font-family:"Cocon",tahoma;}
+
+.pull-left{
+    float: left;
+}
+
+.pull-right{
+    float: right;
+}
