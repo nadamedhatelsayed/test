@@ -15,18 +15,29 @@ use App\Http\Requests\ProductRequest;
 use App\Http\Requests\CategoryRequest;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Controllers\Api\ApiResponseTrait;
+use App\Http\Resources\CategoryResource;
 
 class CategoryController  extends Controller
 {
     use ApiResponseTrait;
+
     public function index()
     {
-        //dd(Auth::guard('api')->user());
-        $categories = Category::with('data')->get();
-
+        $categories  = CategoryResource::collection(Category::with('data')->get());
         return $this->apiResponse($categories, 'get all categories', 201);
     }
 
+    public function show($id)
+    {
+        $category = Category::with('data')->find($id);
+        if ($category != null) {
+            $categoryy = new CategoryResource($category);
+            return $this->apiResponse($categoryy, 'show category', 201);
+        }
+        return $this->apiResponse(null, 'category not found', 404);
+    }
+
+    // for test
     public function store(Request $request)
     {
         try {
@@ -48,7 +59,7 @@ class CategoryController  extends Controller
         }
     }
 
-
+    // for test
     public function update($id, Request $request)
     {
 
@@ -72,15 +83,14 @@ class CategoryController  extends Controller
                 }
 
                 return $this->apiResponse(null, 'update category succesfully', 201);
-            }else{
+            } else {
                 return $this->apiResponse(null, 'category not found', 404);
-            }                
-
+            }
         } catch (\Exception $e) {
             return $this->apiResponse(null, $e, 400);
         }
     }
-
+    // for test
     public function destroy($id)
     {
         try {

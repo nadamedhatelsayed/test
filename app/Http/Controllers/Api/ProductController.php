@@ -25,6 +25,17 @@ class ProductController extends Controller
         return $this->apiResponse($products, 'get all products', 201);
     }
 
+    public function show($id)
+    {
+        $product = Product::with(['data','images'])->find($id);    
+        if($product != null){
+
+            $products = new ProductResource($product);
+            return $this->apiResponse($products, 'show product', 201);
+        }
+        return $this->apiResponse(null, 'product not found', 404);
+    }
+    // for test
     public function store(Request $request)
     {
         try {
@@ -48,7 +59,7 @@ class ProductController extends Controller
         }
     }
 
-
+    // for test
     public function update(Request $request)
     {
          try {
@@ -72,7 +83,7 @@ class ProductController extends Controller
             return $this->apiResponse(null, $e, 400);
         }
     }
-
+    // for test
     public function destroy($id)
     {
         try {
@@ -92,6 +103,7 @@ class ProductController extends Controller
         }
     }
 
+    // for test
     public function uploadImages(Request $request)
     {
         try {
@@ -110,6 +122,8 @@ class ProductController extends Controller
         }
 
     }
+
+    // for test
     public function showImages(Request $request)
     {
         
@@ -123,6 +137,8 @@ class ProductController extends Controller
         } 
         
     }
+
+    // for test
     public function deleteImages($id)
     {
         $image = ProductImage::where('id',$id)->first();

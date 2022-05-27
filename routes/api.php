@@ -28,11 +28,11 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
-Route::group(['middleware' => 'auth:api'], function () {
+// Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('products', ProductController::class);
-    Route::resource('categories', CategoryController::class)->except(['show','update']);
+    Route::resource('categories', CategoryController::class)->except('update');
     Route::patch('category/{id}', [CategoryController::class, 'update'])->name('cat.update');
     Route::post('product/uploadImage', [ProductController::class, 'uploadImages'])->name('upload.images');
     Route::get('product/showImages/{id}', [ProductController::class, 'showImages'])->name('products.image.show');
     Route::post('deleteimage/{id}', [ProductController::class, 'deleteImages'])->name('products.image.delete');
-});
+// });

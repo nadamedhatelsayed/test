@@ -303,6 +303,17 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "show category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -532,6 +543,30 @@
 							]
 						},
 						"description": "delete image by image id"
+					},
+					"response": []
+				},
+				{
+					"name": "show product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/products/8",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"8"
+							]
+						}
 					},
 					"response": []
 				}
